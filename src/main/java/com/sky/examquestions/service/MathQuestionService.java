@@ -7,12 +7,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 
-@Service(value = "JavaQuestionService")
-public class JavaQuestionService implements QuestionService {
+@Service(value = "MathQuestionService")
+public class MathQuestionService implements QuestionService {
 
     private final QuestionRepository questionRepository;
 
-    public JavaQuestionService(@Qualifier("JavaQuestionRepository")
+    public MathQuestionService(@Qualifier("MathQuestionRepository")
                                QuestionRepository questionRepository) {
         this.questionRepository = questionRepository;
     }
@@ -35,9 +35,9 @@ public class JavaQuestionService implements QuestionService {
     @Override
     public Question getRandomQuestion() {
         Random random = new Random();
-        Collection<Question> javaQuestions = questionRepository.getAll();
-        int randomNumberOfQuestion = random.nextInt(javaQuestions.size());
-        List<Question> questions = List.copyOf(javaQuestions);
+        Collection<Question> mathQuestions = questionRepository.getAll();
+        int randomNumberOfQuestion = random.nextInt(mathQuestions.size());
+        List<Question> questions = List.copyOf(mathQuestions);
         return questions.get(randomNumberOfQuestion);
     }
 }

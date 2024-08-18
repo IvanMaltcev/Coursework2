@@ -18,50 +18,75 @@ import static org.mockito.Mockito.*;
 public class ExaminerServiceImplTest {
 
     @Mock
-    QuestionService questionServiceMock;
+    JavaQuestionService javaQuestionServiceMock;
+    @Mock
+    MathQuestionService mathQuestionServiceMock;
 
     private ExaminerService examinerService;
 
-    private Question question;
-    private Question question1;
-    private Question question2;
+    private Question javaQuestion1;
+    private Question javaQuestion2;
+    private Question javaQuestion3;
+    private Question mathQuestion1;
+    private Question mathQuestion2;
+    private Question mathQuestion3;
+
 
     @BeforeEach
     public void setUp() {
 
-        examinerService = new ExaminerServiceImpl(questionServiceMock);
+        examinerService = new ExaminerServiceImpl(javaQuestionServiceMock, mathQuestionServiceMock);
 
-        question = new Question("QuestionText", "QuestionAnswer");
-        question1 = new Question("QuestionText1", "QuestionAnswer1");
-        question2 = new Question("QuestionText2", "QuestionAnswer2");
+        javaQuestion1 = new Question("javaQuestionText1", "javaQuestionAnswer1");
+        javaQuestion2 = new Question("javaQuestionText2", "javaQuestionAnswer2");
+        javaQuestion3 = new Question("javaQuestionText3", "javaQuestionAnswer3");
 
-        when(questionServiceMock.getAll()).thenReturn(List.of(
-                question,
-                question1,
-                question2
+        mathQuestion1 = new Question("mathQuestionText1", "mathQuestionAnswer1");
+        mathQuestion2 = new Question("mathQuestionText2", "mathQuestionAnswer2");
+        mathQuestion3 = new Question("mathQuestionText3", "mathQuestionAnswer3");
+
+        when(javaQuestionServiceMock.getAll()).thenReturn(List.of(
+                javaQuestion1,
+                javaQuestion2,
+                javaQuestion3
+        ));
+        when(mathQuestionServiceMock.getAll()).thenReturn(List.of(
+                mathQuestion1,
+                mathQuestion2,
+                mathQuestion3
         ));
     }
 
     @Test
     public void getQuestionsTesting() {
-        when(questionServiceMock.getRandomQuestion())
-                .thenReturn(question)
-                .thenReturn(question)
-                .thenReturn(question2)
-                .thenReturn(question)
-                .thenReturn(question2)
-                .thenReturn(question1);
+        when(javaQuestionServiceMock.getRandomQuestion())
+                .thenReturn(javaQuestion1)
+                .thenReturn(javaQuestion1)
+                .thenReturn(javaQuestion3)
+                .thenReturn(javaQuestion1)
+                .thenReturn(javaQuestion3)
+                .thenReturn(javaQuestion2);
+        when(mathQuestionServiceMock.getRandomQuestion())
+                .thenReturn(mathQuestion2)
+                .thenReturn(mathQuestion1)
+                .thenReturn(mathQuestion1)
+                .thenReturn(mathQuestion2)
+                .thenReturn(mathQuestion3);
 
-        List<Question> actual = List.copyOf(examinerService.getQuestions(3));
+        List<Question> actual = List.copyOf(examinerService.getQuestions(6));
 
         List<Question> expected = new ArrayList<>();
 
-        expected.add(question2);
-        expected.add(question1);
-        expected.add(question);
+        expected.add(mathQuestion2);
+        expected.add(mathQuestion1);
+        expected.add(mathQuestion3);
+        expected.add(javaQuestion1);
+        expected.add(javaQuestion3);
+        expected.add(javaQuestion2);
 
         assertEquals(expected, actual);
-        verify(questionServiceMock, times(6)).getRandomQuestion();
+        verify(javaQuestionServiceMock, times(6)).getRandomQuestion();
+        verify(mathQuestionServiceMock, times(6)).getRandomQuestion();
 
     }
 
@@ -69,7 +94,7 @@ public class ExaminerServiceImplTest {
     public void exceptionAmountQuestionTesting() {
 
         assertThrows(AmountQuestionsException.class,
-                () -> examinerService.getQuestions(4));
+                () -> examinerService.getQuestions(7));
     }
 
 }

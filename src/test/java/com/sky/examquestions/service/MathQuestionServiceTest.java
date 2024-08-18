@@ -1,7 +1,7 @@
 package com.sky.examquestions.service;
 
 import com.sky.examquestions.domain.Question;
-import com.sky.examquestions.repository.JavaQuestionRepository;
+import com.sky.examquestions.repository.MathQuestionRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,14 +11,15 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class JavaQuestionServiceTest {
+public class MathQuestionServiceTest {
 
     @Mock
-    JavaQuestionRepository javaQuestionRepositoryMock;
+    MathQuestionRepository mathQuestionRepositoryMock;
     private JavaQuestionService out;
 
     private Question question1;
@@ -28,7 +29,7 @@ public class JavaQuestionServiceTest {
     @BeforeEach
     public void setUp() {
 
-        out = new JavaQuestionService(javaQuestionRepositoryMock);
+        out = new JavaQuestionService(mathQuestionRepositoryMock);
 
         question1 = new Question("QuestionText1", "QuestionAnswer1");
         question2 = new Question("QuestionText2", "QuestionAnswer2");
@@ -39,7 +40,7 @@ public class JavaQuestionServiceTest {
     @Test
     public void addQuestionTesting() {
 
-        when(javaQuestionRepositoryMock.add(question1)).thenReturn(question1);
+        when(mathQuestionRepositoryMock.add(question1)).thenReturn(question1);
 
         Question expected = new Question("QuestionText1", "QuestionAnswer1");
 
@@ -49,7 +50,7 @@ public class JavaQuestionServiceTest {
     @Test
     public void removeQuestionTesting() {
 
-        when(javaQuestionRepositoryMock.remove(question1)).thenReturn(question1);
+        when(mathQuestionRepositoryMock.remove(question1)).thenReturn(question1);
 
         Question expected = new Question("QuestionText1", "QuestionAnswer1");
 
@@ -59,7 +60,7 @@ public class JavaQuestionServiceTest {
     @Test
     public void getAllQuestionTesting() {
 
-        when(javaQuestionRepositoryMock.getAll()).thenReturn(List.of(
+        when(mathQuestionRepositoryMock.getAll()).thenReturn(List.of(
                 question1,
                 question2,
                 question3
@@ -78,7 +79,7 @@ public class JavaQuestionServiceTest {
     @Test
     public void getRandomQuestionTesting() {
 
-        when(javaQuestionRepositoryMock.getAll()).thenReturn(List.of(
+        when(mathQuestionRepositoryMock.getAll()).thenReturn(List.of(
                 question1,
                 question2,
                 question3

@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("/java")
-public class JavaQuestionController {
+@RequestMapping("/math")
+public class MathQuestionController {
 
     private final QuestionService service;
 
-    public JavaQuestionController(@Qualifier("JavaQuestionService") QuestionService service) {
+    public MathQuestionController(@Qualifier("MathQuestionService") QuestionService service) {
         this.service = service;
     }
 

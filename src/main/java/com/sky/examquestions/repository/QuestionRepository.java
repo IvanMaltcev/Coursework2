@@ -1,16 +1,14 @@
-package com.sky.examquestions.service;
+package com.sky.examquestions.repository;
 
 import com.sky.examquestions.domain.Question;
 
 import java.util.Collection;
 
-public interface QuestionService {
+public interface QuestionRepository {
 
     Question add(Question question);
 
     Question remove(Question question);
 
     Collection<Question> getAll();
-
-    Question getRandomQuestion();
 }
