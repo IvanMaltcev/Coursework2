@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-@Repository(value = "MathQuestionRepository")
+@Repository(value = "mathQuestionRepository")
 public class MathQuestionRepository implements QuestionRepository {
 
     private final Set<Question> listOfQuestions = new HashSet<>();

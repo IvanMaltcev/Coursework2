@@ -7,7 +7,7 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
-@Repository(value = "JavaQuestionRepository")
+@Repository(value = "javaQuestionRepository")
 public class JavaQuestionRepository implements QuestionRepository {
 
     private final Set<Question> listOfQuestions = new HashSet<>();

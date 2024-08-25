@@ -20,7 +20,7 @@ public class MathQuestionServiceTest {
 
     @Mock
     MathQuestionRepository mathQuestionRepositoryMock;
-    private JavaQuestionService out;
+    private MathQuestionService out;
 
     private Question question1;
     private Question question2;
@@ -29,7 +29,7 @@ public class MathQuestionServiceTest {
     @BeforeEach
     public void setUp() {
 
-        out = new JavaQuestionService(mathQuestionRepositoryMock);
+        out = new MathQuestionService(mathQuestionRepositoryMock);
 
         question1 = new Question("QuestionText1", "QuestionAnswer1");
         question2 = new Question("QuestionText2", "QuestionAnswer2");

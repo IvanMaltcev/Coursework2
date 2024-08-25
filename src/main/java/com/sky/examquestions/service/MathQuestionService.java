@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 
-@Service(value = "MathQuestionService")
+@Service(value = "mathQuestionService")
 public class MathQuestionService implements QuestionService {
 
     private final QuestionRepository questionRepository;
