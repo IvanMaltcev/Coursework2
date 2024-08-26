@@ -10,32 +10,31 @@ import java.util.*;
 @Service(value = "javaQuestionService")
 public class JavaQuestionService implements QuestionService {
 
-    private final QuestionRepository questionRepository;
+    private final QuestionRepository javaQuestionRepository;
 
-    public JavaQuestionService(@Qualifier("JavaQuestionRepository")
-                               QuestionRepository questionRepository) {
-        this.questionRepository = questionRepository;
+    public JavaQuestionService(@Qualifier("javaQuestionRepository") QuestionRepository questionRepository) {
+        this.javaQuestionRepository = questionRepository;
     }
 
     @Override
     public Question add(Question question) {
-        return questionRepository.add(question);
+        return javaQuestionRepository.add(question);
     }
 
     @Override
     public Question remove(Question question) {
-        return questionRepository.remove(question);
+        return javaQuestionRepository.remove(question);
     }
 
     @Override
     public Collection<Question> getAll() {
-        return questionRepository.getAll();
+        return javaQuestionRepository.getAll();
     }
 
     @Override
     public Question getRandomQuestion() {
         Random random = new Random();
-        Collection<Question> javaQuestions = questionRepository.getAll();
+        Collection<Question> javaQuestions = javaQuestionRepository.getAll();
         int randomNumberOfQuestion = random.nextInt(javaQuestions.size());
         List<Question> questions = List.copyOf(javaQuestions);
         return questions.get(randomNumberOfQuestion);
