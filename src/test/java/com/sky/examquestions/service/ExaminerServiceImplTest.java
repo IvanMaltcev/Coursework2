@@ -35,26 +35,22 @@ public class ExaminerServiceImplTest {
     @BeforeEach
     public void setUp() {
 
-        examinerService = new ExaminerServiceImpl(javaQuestionServiceMock, mathQuestionServiceMock);
+        examinerService = new ExaminerServiceImpl(List.of(javaQuestionServiceMock, mathQuestionServiceMock));
 
         javaQuestion1 = new Question("javaQuestionText1", "javaQuestionAnswer1");
         javaQuestion2 = new Question("javaQuestionText2", "javaQuestionAnswer2");
         javaQuestion3 = new Question("javaQuestionText3", "javaQuestionAnswer3");
 
-        mathQuestion1 = new Question("mathQuestionText1", "mathQuestionAnswer1");
-        mathQuestion2 = new Question("mathQuestionText2", "mathQuestionAnswer2");
-        mathQuestion3 = new Question("mathQuestionText3", "mathQuestionAnswer3");
+        mathQuestion1 = new Question("269 - 145", "124");
+        mathQuestion2 = new Question("85 * 2", "170");
+        mathQuestion3 = new Question("643 + 182", "825");
 
         when(javaQuestionServiceMock.getAll()).thenReturn(List.of(
                 javaQuestion1,
                 javaQuestion2,
                 javaQuestion3
         ));
-        when(mathQuestionServiceMock.getAll()).thenReturn(List.of(
-                mathQuestion1,
-                mathQuestion2,
-                mathQuestion3
-        ));
+
     }
 
     @Test
@@ -67,8 +63,6 @@ public class ExaminerServiceImplTest {
                 .thenReturn(javaQuestion3)
                 .thenReturn(javaQuestion2);
         when(mathQuestionServiceMock.getRandomQuestion())
-                .thenReturn(mathQuestion2)
-                .thenReturn(mathQuestion1)
                 .thenReturn(mathQuestion1)
                 .thenReturn(mathQuestion2)
                 .thenReturn(mathQuestion3);
@@ -77,9 +71,9 @@ public class ExaminerServiceImplTest {
 
         List<Question> expected = new ArrayList<>();
 
-        expected.add(mathQuestion2);
-        expected.add(mathQuestion1);
         expected.add(mathQuestion3);
+        expected.add(mathQuestion1);
+        expected.add(mathQuestion2);
         expected.add(javaQuestion1);
         expected.add(javaQuestion3);
         expected.add(javaQuestion2);

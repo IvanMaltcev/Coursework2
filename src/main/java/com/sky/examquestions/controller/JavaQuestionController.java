@@ -16,7 +16,7 @@ public class JavaQuestionController {
 
     private final QuestionService service;
 
-    public JavaQuestionController(@Qualifier("JavaQuestionService") QuestionService service) {
+    public JavaQuestionController(@Qualifier("javaQuestionService") QuestionService service) {
         this.service = service;
     }
 
