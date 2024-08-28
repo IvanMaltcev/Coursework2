@@ -35,7 +35,7 @@ public class ExaminerServiceImplTest {
     @BeforeEach
     public void setUp() {
 
-        examinerService = new ExaminerServiceImpl(javaQuestionServiceMock, mathQuestionServiceMock);
+        examinerService = new ExaminerServiceImpl(List.of(javaQuestionServiceMock, mathQuestionServiceMock));
 
         javaQuestion1 = new Question("javaQuestionText1", "javaQuestionAnswer1");
         javaQuestion2 = new Question("javaQuestionText2", "javaQuestionAnswer2");

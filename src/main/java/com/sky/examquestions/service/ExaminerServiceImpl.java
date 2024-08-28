@@ -11,8 +11,8 @@ public class ExaminerServiceImpl implements ExaminerService {
 
     private final List<QuestionService> services;
 
-    public ExaminerServiceImpl(JavaQuestionService javaQuestionService, MathQuestionService mathQuestionService) {
-        this.services = List.of(javaQuestionService, mathQuestionService);
+    public ExaminerServiceImpl(List<QuestionService> services) {
+        this.services = services;
     }
 
     @Override

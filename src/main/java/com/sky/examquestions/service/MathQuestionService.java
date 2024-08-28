@@ -1,6 +1,7 @@
 package com.sky.examquestions.service;
 
 import com.sky.examquestions.domain.Question;
+import com.sky.examquestions.exception.MethodDoesNotExistException;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -10,17 +11,17 @@ public class MathQuestionService implements QuestionService {
 
     @Override
     public Question add(Question question) {
-        return null;
+        throw new MethodDoesNotExistException("Метод запрещен!");
     }
 
     @Override
     public Question remove(Question question) {
-        return null;
+        throw new MethodDoesNotExistException("Метод запрещен!");
     }
 
     @Override
     public Collection<Question> getAll() {
-        return null;
+        throw new MethodDoesNotExistException("Метод запрещен!");
     }
 
     @Override
